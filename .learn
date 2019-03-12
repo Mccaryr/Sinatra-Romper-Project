@@ -1,0 +1,20 @@
+tags:
+  - project
+  - sinatra
+  - ruby
+  - sessions
+  - restful routes
+  - MVC
+languages:
+  - ruby
+project:
+  review_criteria:
+    - Users can create an account
+    - New accounts must have a username and password
+    - Users can log in and log out
+    - Users can add new items only if logged in
+    - Users can edit/delete only their cart
+    - Empty carts are not saved
+project: true
+resources:
+  - 0
