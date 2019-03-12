@@ -1,19 +1,27 @@
-require './config/environment'
+class UserController < ApplicationController 
 
-class ApplicationController < Sinatra::Base
+    get '/signup' do 
 
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-  end
-
-  helpers do
-    def logged_in?
-      !!current_user
     end
+    
+    post '/signup' do 
 
-    def current_user
-      @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+    end 
+
+    get '/login' do 
+
     end
+    
+    post '/login' do 
+
+    end 
+
+    get '/logout' do 
+        if logged_in? 
+            session.destroy 
+            redirect '/login'
+        else 
+            redirect '/'
+        end 
     end 
 end 

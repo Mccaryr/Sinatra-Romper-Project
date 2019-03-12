@@ -1,0 +1,2 @@
+class VideogameController < ApplicationController 
+end 
