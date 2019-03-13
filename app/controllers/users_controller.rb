@@ -5,6 +5,7 @@ class UserController < ApplicationController
         erb :'/users/create_user'
         else 
             redirect '/videogames/videogames'
+        end 
     end
     
     post '/signup' do 
@@ -14,7 +15,7 @@ class UserController < ApplicationController
             user=User.new(params)
             if user.save 
                 session[:user_id]=user.user_id
-                redirect '/videogames/videogames'
+                redirect '/videogames'
             else 
                 redirect '/signup'
             end 
