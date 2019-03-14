@@ -2,9 +2,9 @@ class UserController < ApplicationController
 
     get '/signup' do 
         if !logged_in? 
-        erb :'/users/create_user'
+        erb :'/users/login'
         else 
-            redirect '/videogames/videogames'
+            redirect '/videogames'
         end 
     end
     
@@ -14,7 +14,7 @@ class UserController < ApplicationController
         else 
             user=User.new(params)
             if user.save 
-                session[:user_id]=user.user_id
+                session[:user_id]=user.id
                 redirect '/videogames'
             else 
                 redirect '/signup'
@@ -22,9 +22,9 @@ class UserController < ApplicationController
         end 
     end 
 
-    get '/login' do 
+    get '/login' do    
         if !logged_in? 
-            redirect '/users/login'
+            erb :'/users/login'
         else 
         redirect '/videogames'
         end 
@@ -34,7 +34,7 @@ class UserController < ApplicationController
         @user=User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id]= @user.id 
-            redirect '/videogames/videogames'
+            redirect '/videogames'
         else 
             redirect '/signup'
              

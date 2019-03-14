@@ -5,13 +5,18 @@ class VideogameController < ApplicationController
     end 
 
     get '/videogames' do 
-        @videogames=Videogame.all 
-        erb :videogames 
+        if logged_in? 
+        @user=User.find_by(session[:user_id])
+        @videogames=Videogames.all 
+        erb :'videogames/videogames'
+        else 
+            redirect '/login'
+        end  
     end 
 
     get '/videogames/:id' do 
-        @videogame = Videogame.find(params[:id])
-        erb :show 
+        @videogame = Videogames.find_by_id(params[:id])
+        erb :'videogames/show' 
     end 
 
     post '/videogames' do 
