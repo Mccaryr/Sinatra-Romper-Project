@@ -1,0 +1,5 @@
+<%= @user.username %> 
+<% @user.videogames.each do |videogame| %>
+    <%= videogame.title %> 
+    <%= videogame.details %>
+    <%end%>

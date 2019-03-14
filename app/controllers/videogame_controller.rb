@@ -1,12 +1,13 @@
-class VideogameController < ApplicationController 
+class VideogamesController < ApplicationController 
 
     get '/videogames/new' do 
         erb :new 
     end 
 
     get '/videogames' do 
+        binding.pry
         if logged_in? 
-        @user=User.find_by(session[:user_id])
+        @user=User.find_by(params[:user_id])
         @videogames=Videogames.all 
         erb :'videogames/videogames'
         else 
@@ -20,8 +21,20 @@ class VideogameController < ApplicationController
     end 
 
     post '/videogames' do 
-        @videogame=Videogame.create(params)
-        redirect "/videogames/#{videogame.id}"
+        if logged_in?
+            if params[:title] ==""
+                redirect '/videogames/new'
+            else 
+            @videogame=current_user.videogames.build(title: params[:title], details: params[:details])
+                if @videogame.save 
+                    redirect "/videogames/#{videogame.id}"
+                    else 
+                    redirect '/videogames/new'
+                end 
+            end 
+        else 
+        redirect '/login'
+        end 
     end 
 
     patch '/videogames/:id' do

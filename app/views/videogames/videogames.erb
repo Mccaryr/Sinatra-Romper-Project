@@ -1,7 +1,7 @@
 <h1>What's Up, <%= @user.username %>?</h1>
 <% @videogames.each do |videogame| %>
 
-    <a href="/videogames/<%= videogame.id %>"<%= videogame.details %></a> 
+    <a href="/videogames/<%= videogame.id %>"<%= videogame.title %></a> 
 
     <% end %> 
     <a href="/videogames/new"><button>New Videogame</button></a> 

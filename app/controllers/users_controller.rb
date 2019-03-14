@@ -1,8 +1,10 @@
 class UserController < ApplicationController 
 
+
+
     get '/signup' do 
         if !logged_in? 
-        erb :'/users/login'
+        erb :"/users/create_user"
         else 
             redirect '/videogames'
         end 
@@ -24,16 +26,18 @@ class UserController < ApplicationController
 
     get '/login' do    
         if !logged_in? 
-            erb :'/users/login'
+            erb :"/users/login"
         else 
         redirect '/videogames'
         end 
     end
     
     post '/login' do 
+        # binding.pry 
         @user=User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id]= @user.id 
+            binding.pry
             redirect '/videogames'
         else 
             redirect '/signup'

@@ -1,0 +1,5 @@
+<form action ="/videogames/<%= @videogame.id %>" method="POST">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+  <input type="text" name="details" value="<%= @videogame.details %>">
+  <input type="submit" value="submit" id="submit">
+</form>
