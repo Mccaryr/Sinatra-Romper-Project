@@ -37,7 +37,7 @@ class UserController < ApplicationController
             redirect '/videogames/videogames'
         else 
             redirect '/signup'
-            end 
+             
         end 
     end 
 
