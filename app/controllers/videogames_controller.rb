@@ -10,8 +10,8 @@ class VideogamesController < ApplicationController
 
     get '/videogames' do 
         if logged_in? 
-        @user=User.find_by(params[:user_id])
-        @videogames = Videogames.all 
+        @user = current_user
+        @videogames = @user.videogames
         erb :'videogames/videogames'
         else 
             redirect '/login'
@@ -24,7 +24,7 @@ class VideogamesController < ApplicationController
             if params[:title] ==""
                 redirect '/videogames/new'
             else 
-            @videogame = Videogames.create(title: params[:title], details: params[:details])
+            @videogame = current_user.videogames.build(title: params[:title], details: params[:details])
                 if @videogame.save 
                     redirect "/videogames/#{@videogame.id}"
                     else 
@@ -38,7 +38,7 @@ class VideogamesController < ApplicationController
 
     get '/videogames/:id' do 
         if logged_in? 
-        @videogame = Videogames.find_by_id(params[:id])
+        @videogame = Videogame.find_by_id(params[:id])
         erb :'videogames/show_videogames'
         else 
             redirect '/login'
@@ -47,7 +47,7 @@ class VideogamesController < ApplicationController
 
     get '/videogames/:id/edit' do 
         if logged_in? 
-            @videogame = Videogames.find_by_id(params[:id])
+            @videogame = Videogame.find_by_id(params[:id])
             if @videogame && @videogame.user == current_user
                 erb :'/videogames/edit_videogames'
             else 
@@ -63,7 +63,7 @@ class VideogamesController < ApplicationController
             if params[:details] == "" || params[:title] == ""
                 redirect "/videogames/#{params[:id]/edit}"
             else 
-                @videogame = Videogames.find_by_id(params[:id])
+                @videogame = Videogame.find_by_id(params[:id])
                 if @videogame && @videogame.user == current_user
                     if @videogame.update(details: params[:details], title: params[:title])
                         redirect "/videogames/#{@videogame.id}"
@@ -81,7 +81,7 @@ class VideogamesController < ApplicationController
 
     delete '/videogames/:id/delete' do
         if logged_in?
-          @videogame = Videogames.find_by_id(params[:id])
+          @videogame = Videogame.find_by_id(params[:id])
           if @videogame && @videogame.user == current_user
             @videogame.delete
           end
