@@ -1,10 +1,10 @@
-Title:<%=@videogame.title%>
+<strong>Title:</strong> <%= @videogame.title %>
 <br>
-Details:<%=@videogame.details%>
-<br> 
+<strong>Details:</strong> <%=@videogame.details%>
+<br><br>
 
 <a href='/videogames'>Back to Games</a> 
-
+<br><br>
 <form action="/videogames/<%= @videogame.id %>/delete" method="post">
   <input type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Videogame" id="Delete Videogame">

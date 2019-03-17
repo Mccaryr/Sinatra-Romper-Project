@@ -20,7 +20,6 @@ class VideogamesController < ApplicationController
 
     post '/videogames' do 
         if logged_in?
-            # binding.pry 
             if params[:title] ==""
                 redirect '/videogames/new'
             else 
