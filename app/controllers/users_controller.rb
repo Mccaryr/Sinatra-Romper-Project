@@ -11,9 +11,7 @@ class UserController < ApplicationController
     end
     
     post '/signup' do 
-        if params[:username] == "" || params[:password] == ""
-            redirect '/signup'
-        else 
+
             user=User.new(params)
             if user.save 
                 session[:user_id]=user.id
@@ -21,7 +19,6 @@ class UserController < ApplicationController
             else 
                 redirect '/signup'
             end 
-        end 
     end 
 
     get '/login' do    

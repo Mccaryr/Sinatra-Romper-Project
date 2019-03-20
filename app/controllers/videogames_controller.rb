@@ -10,8 +10,7 @@ class VideogamesController < ApplicationController
 
     get '/videogames' do 
         if logged_in? 
-        @user = current_user
-        @videogames = @user.videogames
+        @videogames = current_user.videogames
         erb :'videogames/videogames'
         else 
             redirect '/login'
@@ -59,19 +58,16 @@ class VideogamesController < ApplicationController
 
     patch '/videogames/:id' do
         if logged_in? 
-            if params[:details] == "" || params[:title] == ""
-                redirect "/videogames/#{params[:id]/edit}"
-            else 
-                @videogame = Videogame.find_by_id(params[:id])
-                if @videogame && @videogame.user == current_user
-                    if @videogame.update(details: params[:details], title: params[:title])
-                        redirect "/videogames/#{@videogame.id}"
-                    else 
-                        redirect "/videogames/#{@videogame.id}/edit"
-                    end 
+            @videogame = Videogame.find_by_id(params[:id])
+            if @videogame && @videogame.user == current_user
+                if @videogame.update(details: params[:details], title: params[:title])
+                    redirect "/videogames/#{@videogame.id}"
                 else 
-                    redirect '/videogames'
-                end 
+                    redirect "/videogames/#{@videogame.id}/edit"
+                end
+
+            else 
+                redirect '/videogames' 
             end 
         else 
             redirect '/login'
