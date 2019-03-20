@@ -1,11 +1,11 @@
 <h1>What's Up, <%= @user.username %>?</h1>
-<ul>
+<ol>
 <% @videogames.each do |videogame| %>
 
 
     <li><a href="/videogames/<%= videogame.id %>"><%= videogame.title %></a> </li>
 
     <% end %> 
-    </ul>
+    </ol>
     <a href="/videogames/new"><button>New Videogame</button></a>
     <a href="/logout"><button>Log out</button></a> 
