@@ -1,3 +1,8 @@
-.derp {
-    display:none;
+body {
+    background-image: url('KH3.png');
+    color:white;
+        }
+
+.link_color {
+    color:white;
 }

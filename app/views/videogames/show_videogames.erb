@@ -2,8 +2,8 @@
 <br>
 <strong>Details:</strong> <%=@videogame.details%>
 <br><br>
-
-<a href='/videogames'>Back to Games</a> 
+<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+<a class ="link_color" href='/videogames'>Back to Games</a> 
 <br><br>
 <form action="/videogames/<%= @videogame.id %>/delete" method="post">
   <input type="hidden" name="_method" value="delete">

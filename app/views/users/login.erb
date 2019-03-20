@@ -1,12 +1,12 @@
 <html>
     <h1>Log in</h1> 
-    Hello
+ 
     <head>
-<link rel=”stylesheet” type=”text/css” href=”/style.css”/>
+<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <form action='/login' method="POST" class="derp">
-            Username: <input type="text" name="username" id="username" class="derp">
+        <form action='/login' method="POST">
+            Username: <input type="text" name="username" id="username">
             Password: <input type="text" name="password" id="password">
             <input type="submit" value="Submit" id="submit">
         </form> 
