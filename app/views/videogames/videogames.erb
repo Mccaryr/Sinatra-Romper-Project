@@ -1,7 +1,7 @@
 <h1>What's Up, <%= @user.username %>?</h1>
 <ol>
 <% @videogames.each do |videogame| %>
-<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
+
     <body>
     <li><a class ="link_color" href="/videogames/<%= videogame.id %>"><%= videogame.title %></a> </li>
 
@@ -10,3 +10,5 @@
     <a href="/videogames/new"><button>New Videogame</button></a>
     <a href="/logout"><button>Log out</button></a> 
     </body>
+
+    <link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />

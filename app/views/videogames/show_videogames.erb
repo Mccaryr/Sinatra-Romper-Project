@@ -1,8 +1,7 @@
 <strong>Title:</strong> <%= @videogame.title %>
-<br>
+<br><br>
 <strong>Details:</strong> <%=@videogame.details%>
 <br><br>
-<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />
 <a class ="link_color" href='/videogames'>Back to Games</a> 
 <br><br>
 <form action="/videogames/<%= @videogame.id %>/delete" method="post">
@@ -13,3 +12,5 @@
  <form action="/videogames/<%=@videogame.id%>/edit" method="get">
   <input type="submit"  id = "submit" value="Edit Videogame">
 </form>
+
+<link href="<%= url('/style.css') %>" rel="stylesheet" type="text/css" />

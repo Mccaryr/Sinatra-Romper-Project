@@ -1,3 +1,5 @@
+<h1> Edit Videogame </h1> 
+
 <form action ="/videogames/<%= @videogame.id %>" method="POST">
 <input id="hidden" type="hidden" name="_method" value="PATCH">
   <strong>Title:</strong><input type="text" name="title" value="<%= @videogame.title %>">
